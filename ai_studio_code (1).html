@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MEF - Producción Musical</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; font-family: 'Montserrat', sans-serif; background: #4B0082; color: #f9f9f9; }
+    header { position: relative; text-align: center; padding: 80px 20px; }
+    header h1 { margin: 0; font-size: 2.2em; }
+    header p { margin: 10px 0 20px; font-size: 1.1em; }
+    .btn { background: #FFD700; color: #000; padding: 12px 25px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block; margin-top: 10px; transition: transform 0.3s; }
+    .btn:hover { transform: scale(1.05); }
+    section { padding: 60px 20px; max-width: 900px; margin: auto; opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+    section.visible { opacity: 1; transform: translateY(0); }
+    h2 { text-align: center; margin-bottom: 30px; color: #FFD700; }
+    .steps, .plans, .gallery, .faq, .why { display: grid; gap: 20px; }
+    .step, .plan, .testimonial, .gallery-item, .faq-item, .why-item { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px; transition: transform 0.3s; }
+    .step:hover, .plan:hover, .testimonial:hover, .gallery-item:hover, .faq-item:hover, .why-item:hover { transform: scale(1.02); }
+    footer { text-align: center; padding: 20px; background: #3a0066; }
+    form { display: grid; gap: 10px; max-width: 400px; margin: auto; }
+    input, textarea { padding: 10px; border: none; border-radius: 4px; }
+    .menu-icon { display: none; font-size: 2em; position: absolute; top: 20px; right: 20px; cursor: pointer; z-index: 1000;} /* Added z-index */
+    .mobile-menu { display: none; flex-direction: column; position: absolute; top: 60px; right: 0; background: #3a0066; width: 200px; border-radius: 0 0 8px 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); z-index: 999;} /* Added z-index */
+    .mobile-menu a { color: #FFD700; padding: 12px; text-decoration: none; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .mobile-menu a:last-child { border-bottom: none; }
+    @media (max-width: 768px) { .menu-icon { display: block; } }
+    img { max-width: 100%; border-radius: 8px; transition: transform 0.3s; }
+    img:hover { transform: scale(1.03); }
+    /* Botones flotantes */
+    .floating-btn { position: fixed; bottom: 20px; right: 20px; background: #FFD700; color: #4B0082; font-size: 1.5em; padding: 12px; border-radius: 50%; text-decoration: none; box-shadow: 0 0 10px rgba(0,0,0,0.5); margin-left: 10px; transition: transform 0.3s; z-index: 1000; }
+    .floating-btn:hover { transform: scale(1.2); }
+    .floating-container { position: fixed; bottom: 20px; right: 20px; display: flex; flex-direction: row; z-index: 1000; }
+    .floating-container .floating-btn:first-child { margin-right: 10px; } /* Space between buttons */
+
+    /* Responsive adjustments for gallery, faq, why */
+    @media (min-width: 600px) {
+      .gallery, .faq, .why {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      }
+    }
+    @media (min-width: 900px) {
+      .gallery {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <span class="menu-icon" onclick="toggleMenu()">🎼</span>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#">Inicio</a>
+      <a href="#sobre">Sobre mí / Sobre MEF</a>
+      <a href="#funciona">¿Cómo funciona?</a>
+      <a href="#planes">Planes y precios</a>
+      <a href="#galeria">Galería</a>
+      <a href="#faq">Preguntas frecuentes</a>
+      <a href="#porque">¿Por qué elegirme?</a>
+      <a href="#musica">Música</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <h1>Dejame ayudarte y acompañarte en tu camino musical</h1>
+    <p>Contame tu idea, el tipo de letra y estilo musical que querés que suene… yo hago el resto.</p>
+    <a href="#contacto" class="btn">¡Empezá tu proyecto ahora!</a>
+    <a href="https://wa.me/542213628066" target="_blank" class="btn">Contacto por WhatsApp</a>
+  </header>
+
+  <section id="sobre">
+    <h2>Sobre mí / Sobre MEF</h2>
+    <div class="why">
+      <div class="why-item">
+        <p>Soy un productor musical con una pasión profunda por la creación y la experimentación sonora. A lo largo de los años, he tenido el privilegio de trabajar con artistas de diversos géneros, ayudándolos a dar vida a sus visiones musicales. Mi enfoque se centra en la calidad, la autenticidad y, sobre todo, en capturar la esencia de cada artista. En MEF, creemos que cada historia merece ser contada a través de la música, y estoy aquí para asegurar que la tuya resuene con fuerza y claridad.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="funciona">
+    <h2>¿Cómo funciona?</h2>
+    <div class="steps">
+      <div class="step">
+        <h3>1. Contame tu idea</h3>
+        <p>Empezamos con una conversación. Me contás qué tipo de música querés crear, el estilo, las influencias, y si ya tenés letras o maquetas.</p>
+      </div>
+      <div class="step">
+        <h3>2. Desarrollo y Producción</h3>
+        <p>Una vez clara la visión, me encargo de la composición, los arreglos, la grabación de instrumentos y voces, y todo el proceso de producción.</p>
+      </div>
+      <div class="step">
+        <h3>3. Mezcla y Masterización</h3>
+        <p>Tu música pasará por un proceso profesional de mezcla para equilibrar todos los elementos y la masterización para optimizar su sonido para todas las plataformas.</p>
+      </div>
+      <div class="step">
+        <h3>4. Entrega Final</h3>
+        <p>Recibirás tu single o proyecto terminado, listo para ser lanzado al mundo. ¡Y con tu portada digital personalizada incluida!</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="planes">
+    <h2>Planes y precios</h2>
+    <div class="plans">
+      <div class="plan">
+        <h3>Single Express</h3>
+        <p>Ideal para artistas que buscan una producción rápida y de calidad para una sola canción.</p>
+        <ul>
+          <li>Producción completa de 1 single</li>
+          <li>Mezcla y Masterización</li>
+          <li>Portada digital personalizada</li>
+          
+        </ul>
+        <a href="#contacto" class="btn">Consultar precio</a>
+      </div>
+      <div class="plan">
+        <h3>EP Básico</h3>
+        <p>Perfecto para proyectos más ambiciosos con varias canciones que requieren cohesión.</p>
+        <ul>
+          <li>Producción completa de hasta 3 canciones</li>
+          <li>Mezcla y Masterización</li>
+          <li>Portada digital personalizada</li>
+          <li>Soporte y asesoría constante</li>
+        </ul>
+        <a href="#contacto" class="btn">Consultar precio</a>
+      </div>
+      <div class="plan">
+        <h3>Álbum Completo</h3>
+        <p>Para artistas que quieren desarrollar un trabajo discográfico completo y profesional.</p>
+        <ul>
+          <li>Producción completa de hasta 10 canciones</li>
+          <li>Mezcla y Masterización</li>
+          <li>Diseño de arte para álbum completo</li>
+          
+        </ul>
+        <a href="#contacto" class="btn">Consultar precio</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="galeria">
+    <h2>Galería</h2>
+    <div class="gallery">
+      <div class="gallery-item">
+        <img src="https://via.placeholder.com/400x300?text=Imagen+Estudio+1" alt="Cantante grabando en estudio profesional">
+        <p style="text-align:center; margin-top:10px;">Canto en un estudio de grabación profesional en la ciudad de La Plata</p>
+      </div>
+      <div class="gallery-item">
+        <img src="https://via.placeholder.com/400x300?text=Imagen+Estudio+2" alt="Productor trabajando en la mesa de mezcla">
+        <p style="text-align:center; margin-top:10px;">Producción y mezcla profesional</p>
+      </div>
+      <div class="gallery-item">
+        <img src="https://via.placeholder.com/400x300?text=Imagen+Estudio+3" alt="Detalle de micrófono y cabina de grabación">
+        <p style="text-align:center; margin-top:10px;">Equipamiento de calidad para un sonido único</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <h2>Preguntas frecuentes</h2>
+    <div class="faq">
+      <div class="faq-item"><strong>¿Cuánto tarda en entregarse un single?</strong><br>Normalmente depende de la coordinacíon , desarrollo y proceso de la grabación y masterización del single.</div>
+      <div class="faq-item"><strong>¿Qué estilos musicales producís?</strong><br>Pop, soul, dance, baladas y muchos más.</div>
+      <div class="faq-item"><strong>¿Cómo es el pago?</strong><br>Puedes hacerlo por transferencia, efectivo o medios digitales.</div>
+      <div class="faq-item"><strong>¿Se incluye portada digital?</strong><br>Sí, totalmente personalizada a tu gusto.</div>
+      <div class="faq-item"><strong>¿Necesito tener mi letra lista?</strong><br>Sí, es ideal que tengas tu letra o al menos la idea principal. Podemos ayudarte a pulirla.</div>
+      <div class="faq-item"><strong>¿Ofrecés sesiones presenciales?</strong><br>Sí, trabajamos en estudio en La Plata para grabaciones y masterización . Para artistas que no pueden acercarse , podemos coordinar para enviar una grabacón , sensillo, o loop que tengan y enviarme por privado para Masterizar .</div>
+    </div>
+  </section>
+
+  <section id="porque">
+    <h2>¿Por qué elegirme?</h2>
+    <div class="why">
+      <div class="why-item">
+        <p>Con años de experiencia recorriendo distintos estilos musicales, combino conocimientos de instrumentos reales y producción digital para lograr un sonido auténtico y profesional. Me involucro en cada proyecto como si fuera propio, ofreciendo acompañamiento personalizado, rapidez en la entrega y la mejor calidad. Porque tu música merece sonar única y llegar al mundo.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="musica">
+    <h2>Sección de Música</h2>
+    <p style="text-align:center;">Aquí podrás escuchar ejemplos y proyectos musicales creados especialmente para vos.</p>
+    <div style="text-align:center; margin-top: 30px;">
+      <!-- Placeholder for embedded music players -->
+      <iframe style="border-radius:12px; margin-bottom: 20px;" src="https://open.spotify.com/embed/track/2Pp02e8X3jBw68P1G5Qj?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      <iframe style="border-radius:12px;" src="https://open.spotify.com/embed/track/6UjYF600c00c00c00c00c?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      <p style="margin-top:20px;">¡Pronto más ejemplos de mis producciones!</p>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <p style="text-align:center;">¡Contame sobre tu proyecto! Estoy ansioso por escucharte.</p>
+    <form action="#" method="POST">
+      <input type="text" name="name" placeholder="Tu Nombre" required />
+      <input type="email" name="email" placeholder="Tu Email" required />
+      <input type="tel" name="phone" placeholder="Tu Teléfono (opcional)" />
+      <textarea name="message" rows="5" placeholder="Contame sobre tu idea musical..." required></textarea>
+      <button type="submit" class="btn" style="width: 100%; border: none; cursor: pointer;">Enviar Mensaje</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 MEF - Producción Musical. Todos los derechos reservados.</p>
+    <p style="font-weight: bold; margin-top: 15px;">
+      (Mensaje Importante) : NO DUDES EN CONTACTARME SI REQUIERES DE MI SERVICIO , CUENTAME TU CONSULTA O DUDA , Y TE RESOLVEREMOS LO MAS PRONTO POSIBLE .. SALUDOS ATTE MeF
+    </p>
+  </footer>
+
+  <div class="floating-container">
+    <a href="https://wa.me/542213628066" target="_blank" class="floating-btn" title="Contactar por WhatsApp">💬</a>
+    <a href="#contacto" class="floating-btn" title="Ir a Contacto">📧</a>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      var menu = document.getElementById('mobileMenu');
+      menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    // Animación al hacer scroll
+    const sections = document.querySelectorAll('section');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        } else {
+          // Optional: remove 'visible' class when out of view to re-trigger on scroll back
+          // entry.target.classList.remove('visible');
+        }
+      });
+    }, { threshold: 0.1 }); // Trigger when 10% of the section is visible
+
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+
+    // Close mobile menu when a link is clicked
+    document.querySelectorAll('#mobileMenu a').forEach(item => {
+      item.addEventListener('click', () => {
+        var menu = document.getElementById('mobileMenu');
+        menu.style.display = 'none';
+      });
+    });
+  </script>
+</body>
+</html>
